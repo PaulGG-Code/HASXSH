@@ -1,0 +1,22 @@
+{
+  "name": "hasxsh",
+  "version": "1.0.0",
+  "description": "Introducing HASXSH, our powerful wordlist parsing and hashing tool! With just a few clicks, you can generate SHA256 and Keccak256 hashes for every word in your list, and store them in an easy-to-use CSV file.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "parser",
+    "keccak256",
+    "sha256"
+  ],
+  "author": "pgg",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^23.1.4"
+  },
+  "dependencies": {
+    "keccak": "^3.0.3"
+  }
+}

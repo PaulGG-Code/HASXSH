@@ -1,0 +1,45 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Wordlist Hasher</title>
+  </head>
+  <body>
+    <h1>Wordlist Hasher</h1>
+    <form>
+      <label for="url">Dictionary URL:</label>
+      <input type="text" id="url" name="url" placeholder="https://example.com/dictionary.txt">
+      <br>
+      <button type="button" id="download">Download</button>
+    </form>
+    <div id="progress" style="display: none;">
+      <p>Processing...</p>
+      <progress id="progressbar"></progress>
+    </div>
+  </body>
+  <script>
+    const { ipcRenderer } = window.electron;
+    
+    const downloadButton = document.getElementById('download');
+    const urlInput = document.getElementById('url');
+    const progress = document.getElementById('progress');
+    const progressBar = document.getElementById('progressbar');
+
+    downloadButton.addEventListener('click', () => {
+      progress.style.display = 'block';
+
+      ipcRenderer.send('download', urlInput.value);
+    });
+
+    ipcRenderer.on('progress', (event, percent) => {
+      progressBar.value = percent;
+    });
+
+    ipcRenderer.on('complete', () => {
+      progress.style.display = 'none';
+      alert('Dictionary processed and saved to rockyou.csv');
+      window.close();
+    });
+  </script>
+</html>
